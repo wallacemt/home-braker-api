@@ -21,6 +21,18 @@ GET http://localhost:3000/assets
 GET http://localhost:3000/assets/A1
 
 ###
+POST http://localhost:3000/assets/A1/dailies
+Content-Type: application/json
+
+{
+  "date": "2024-12-10",
+  "price": 100
+}
+
+###
+GET http://localhost:3000/assets/A1/dailies
+
+###
 # @name createWallet
 POST http://localhost:3000/wallets
 

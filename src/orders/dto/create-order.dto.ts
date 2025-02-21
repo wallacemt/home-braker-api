@@ -4,6 +4,6 @@ export class CreateOrderDto {
   walletId: string;
   assetId: string;
   shares: number;
-  price: string;
+  price: number;
   type: OrderType;
 }
