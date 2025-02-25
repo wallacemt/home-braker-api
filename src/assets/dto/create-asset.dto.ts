@@ -3,7 +3,7 @@ export class CreateAssetDto {
 
   symbol: string;
 
-  price: string;
+  price: number;
 
-  image;
+  image: string;
 }

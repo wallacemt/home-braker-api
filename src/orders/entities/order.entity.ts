@@ -3,6 +3,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 import crypto from 'crypto';
 import { Asset, AssetDocument } from '../../assets/entities/asset.entity';
 import { Wallet, WalletDocument } from '../../wallets/entities/wallet.entity';
+import { Trade } from './trade.entity';
 
 export type OrderDocument = HydratedDocument<Order>;
 
@@ -18,7 +19,7 @@ export enum OrderStatus {
   FAILED = 'FAILED',
 }
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, optimisticConcurrency: true })
 export class Order {
   @Prop({ default: () => crypto.randomUUID() })
   _id: string;
@@ -43,6 +44,9 @@ export class Order {
 
   @Prop()
   status: OrderStatus;
+
+  @Prop({ type: [mongoose.Schema.Types.String], ref: 'Trade' })
+  trades: Trade[] | string[];
 
   createdAt!: Date;
   updatedAt!: Date;
